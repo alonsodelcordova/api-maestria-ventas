@@ -37,7 +37,7 @@ class Datos extends Conexion
 		return $usuarios;
 	}
 
-	public function loginUsuarioModel($datosModel, $tabla){
+	public static function loginUsuarioModel($datosModel, $tabla){
 
 		$stmt = Conexion::conectar()->prepare("SELECT nombre, usuario, password, perfil FROM $tabla WHERE usuario = :usuario AND password = :password");
 
@@ -69,10 +69,10 @@ class Datos extends Conexion
 	#CATEGORIAS
 	//----------------------------------------------------------------------------------
 
-	public static function createCategoriaModel($titulo, $tabla){
-		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (titulo) VALUES (:titulo)");
+	public static function createCategoriaModel($categoria, $tabla){
+		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (categoria) VALUES (:categoria)");
 
-		$stmt->bindParam(":titulo", $titulo, PDO::PARAM_STR);
+		$stmt->bindParam(":categoria", $categoria, PDO::PARAM_STR);
 
 		if($stmt->execute()){
 			return true;
@@ -102,11 +102,11 @@ class Datos extends Conexion
 		return $categorias;
 	}
 
-	public function updateCategoriaModel($datosModel, $tabla){
-		$stmt = Conexion::conectar()->prepare("UPDATE $tabla set titulo = :titulo WHERE id = :id");
+	public static function updateCategoriaModel($datosModel, $tabla){
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla set categoria = :categoria WHERE id_categoria = :id_categoria");
 
-		$stmt->bindParam(":titulo", $datosModel["titulo"], PDO::PARAM_STR);
-		$stmt->bindParam(":id", $datosModel["id"], PDO::PARAM_INT);
+		$stmt->bindParam(":categoria", $datosModel["categoria"], PDO::PARAM_STR);
+		$stmt->bindParam(":id_categoria", $datosModel["id_categoria"], PDO::PARAM_INT);
 
 		if($stmt->execute()){
 			return true;
@@ -118,8 +118,32 @@ class Datos extends Conexion
 
 	#PRODUCTOS
 	//-----------------------
-	public function readProductosModel($tabla){
-		$stmt = Conexion::conectar()->prepare("SELECT id_producto, id_categoria, id_unidad, idAlmacen, codigo, nombre, descripcion,stock, precio_venta, fecha_registro FROM $tabla");
+   public static function createProductoModel($datosModel, $tabla){
+
+ 
+      $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (id_categoria, id_unidad, idAlmacen, codigo, nombre, descripcion, stock, precio_venta) VALUES (:id_categoria, :id_unidad, :idAlmacen, :codigo, :nombre, :descripcion, :stock, :precio_venta)");
+	
+		$stmt->bindParam(":id_categoria", $datosModel["id_categoria"], PDO::PARAM_STR);
+		$stmt->bindParam(":id_unidad", $datosModel["id_unidad"], PDO::PARAM_STR);
+		$stmt->bindParam(":idAlmacen", $datosModel["idAlmacen"], PDO::PARAM_STR);
+		$stmt->bindParam(":codigo", $datosModel["codigo"], PDO::PARAM_STR);
+		$stmt->bindParam(":nombre", $datosModel["nombre"], PDO::PARAM_STR);
+		$stmt->bindParam(":descripcion", $datosModel["descripcion"], PDO::PARAM_STR);
+		$stmt->bindParam(":stock", $datosModel["stock"], PDO::PARAM_STR);
+		$stmt->bindParam(":precio_venta", $datosModel["precio_venta"], PDO::PARAM_STR);
+
+		if($stmt->execute()){
+			return true;
+		}else{
+			return false;
+		}
+   
+
+   }
+
+
+	public static function readProductosModel($tabla){
+		$stmt = Conexion::conectar()->prepare("SELECT id_producto, id_categoria, id_unidad, idAlmacen, codigo, nombre, descripcion,stock, precio_venta FROM $tabla");
 		$stmt->execute();
 
 		$stmt->bindColumn("id_producto", $id_producto);
@@ -131,7 +155,6 @@ class Datos extends Conexion
 		$stmt->bindColumn("descripcion", $descripcion);
 		$stmt->bindColumn("stock", $stock);
 		$stmt->bindColumn("precio_venta", $precio_venta);
-		$stmt->bindColumn("fecha_registro", $fecha_registro);
 
 		$productos = array();
 
@@ -146,20 +169,18 @@ class Datos extends Conexion
 			$pro['descripcion'] = utf8_encode($descripcion);
 			$pro['stock'] = utf8_encode($stock);
 			$pro['precio_venta'] = utf8_encode($precio_venta);
-			$pro['fecha_registro'] = utf8_encode($fecha_registro);
 
 			array_push($productos, $pro);
 
 		}
-
 		return $productos;
 	}
 
 
 	#TIPO GAS
 	//-----------------------
-       public static function verTipoGasModel($tabla){
-		$stmt = (new Conexion)->conectar()->prepare("SELECT id_tipogas, codigo, descripcion FROM $tabla");
+    public static function verTipoGasModel($tabla){
+		$stmt = Conexion::conectar()->prepare("SELECT id_tipogas, codigo, descripcion FROM $tabla");
 		$stmt->execute();
 
 		$stmt->bindColumn("id_tipogas", $id_tipogas);
@@ -183,7 +204,7 @@ class Datos extends Conexion
 	}
 
 	#UNIDAD MEDIDA
-	public function verMedidaModel($tabla){
+	public static function verMedidaModel($tabla){
 		$stmt = Conexion::conectar()->prepare("SELECT id_unidad, unidad FROM $tabla");
 		$stmt->execute();
 
@@ -203,7 +224,7 @@ class Datos extends Conexion
 	}
 
 	#TIPO OPERACION
-	public function verOperacionModel($tabla){
+	public static function verOperacionModel($tabla){
 		$stmt = Conexion::conectar()->prepare("SELECT id_operacion, operacion FROM $tabla");
 		$stmt->execute();
 
@@ -224,7 +245,7 @@ class Datos extends Conexion
 
 	
 	#TIPO COMPROBANTE
-	public function verComprobanteModel($tabla){
+	public static function verComprobanteModel($tabla){
 		$stmt = Conexion::conectar()->prepare("SELECT id_comprobante, comprobante FROM $tabla");
 		$stmt->execute();
 
@@ -244,8 +265,28 @@ class Datos extends Conexion
 	}
 
 
-   # CLIENTES
-	public function verClientesModel($tabla){
+   	# CLIENTES
+	public static function createClientesModel($datosModel, $tabla){
+
+ 
+      $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (documento, ruc, razon_social, direccion) VALUES (:documento, :ruc, :razon_social, :direccion)");
+	
+		$stmt->bindParam(":documento", $datosModel["documento"], PDO::PARAM_STR);
+		$stmt->bindParam(":ruc", $datosModel["ruc"], PDO::PARAM_STR);
+		$stmt->bindParam(":razon_social", $datosModel["razon_social"], PDO::PARAM_STR);
+		$stmt->bindParam(":direccion", $datosModel["direccion"], PDO::PARAM_STR);
+
+		if($stmt->execute()){
+			return true;
+		}else{
+			return false;
+		}
+   
+
+   }
+
+
+	public static function verClientesModel($tabla){
 		$stmt = Conexion::conectar()->prepare("SELECT id_cliente, documento, ruc, razon_social ,direccion FROM $tabla");
 		$stmt->execute();
 
@@ -269,6 +310,61 @@ class Datos extends Conexion
 		}
 		return $clientes;
 	}
+
+   
+   # PROVEEDORES
+
+	public static function crearProveedor($datosModel, $tabla){
+
+      $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (ruc_proveedor, razon_social, direccion_fiscal,estado_empresa,condicion_empresa) VALUES (:ruc_proveedor, :razon_social, :direccion_fiscal, :estado_empresa, :condicion_empresa)");
+	
+		$stmt->bindParam(":ruc_proveedor", $datosModel["ruc_proveedor"], PDO::PARAM_STR);
+		$stmt->bindParam(":razon_social", $datosModel["razon_social"], PDO::PARAM_STR);
+		$stmt->bindParam(":direccion_fiscal", $datosModel["direccion_fiscal"], PDO::PARAM_STR);
+		$stmt->bindParam(":estado_empresa", $datosModel["estado_empresa"], PDO::PARAM_STR);
+		$stmt->bindParam(":condicion_empresa", $datosModel["condicion_empresa"], PDO::PARAM_STR);
+
+		if($stmt->execute()){
+			return true;
+		}else{
+			return false;
+		}
+   
+
+   }
+
+
+   public static function verProveedorModel($tabla){
+		$stmt = Conexion::conectar()->prepare("SELECT id_proveedor, ruc_proveedor,  razon_social ,direccion_fiscal,estado_empresa, condicion_empresa FROM $tabla");
+		$stmt->execute();
+
+		$stmt->bindColumn("id_proveedor", $id_proveedor);
+		$stmt->bindColumn("ruc_proveedor", $ruc_proveedor);
+		$stmt->bindColumn("razon_social", $razon_social);
+		$stmt->bindColumn("direccion_fiscal", $direccion_fiscal);
+		$stmt->bindColumn("estado_empresa", $estado_empresa);
+		$stmt->bindColumn("condicion_empresa", $condicion_empresa);
+
+		$provee = array();
+
+		while($fila = $stmt->fetch(PDO::FETCH_BOUND)){
+			$prov = array();
+			$prov['id_proveedor'] = utf8_encode($id_proveedor);
+			$prov['ruc_proveedor'] = utf8_encode($ruc_proveedor);
+			$prov['razon_social'] = utf8_encode($razon_social);
+			$prov['direccion_fiscal'] = utf8_encode($direccion_fiscal);
+			$prov['estado_empresa'] = utf8_encode($estado_empresa);
+			$prov['condicion_empresa'] = utf8_encode($condicion_empresa);
+
+			array_push($provee, $prov);
+		}
+		return $provee;
+	}
+
+
+
+
+
 
 
 

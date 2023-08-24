@@ -1,0 +1,18 @@
+api consulta ruc:
+
+https://apifacturacion.com/api.php?rucCliente=20603425066
+
+Respuesta:
+
+{
+    "ruc": "20603425066",
+    "razon_social": "PIURASOFT SOLUTIONS-SOLUCIONES TECNOLOGICAS Y SERVICIOS GENERALES E.I.R.L.",
+    "estado": "ACTIVO",
+    "condicion": "HABIDO",
+    "direccion": "AV. VICTOR ANDRES BELAUNDE 28 URB. PIURA I ETAPA",
+    "ubigeo": "200101",
+    "departamento": "PIURA",
+    "provincia": "PIURA ",
+    "distrito": "PIURA",
+    "token": "e8160faf7a3f9b385f5688aa82fcd000"
+}

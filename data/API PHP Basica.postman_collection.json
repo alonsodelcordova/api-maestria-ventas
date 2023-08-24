@@ -6,204 +6,485 @@
 	},
 	"item": [
 		{
-			"name": "Obtener tipo gas",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost/curso_api/Api.php?apicall=tipoGas",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"path": [
-						"curso_api",
-						"Api.php"
-					],
-					"query": [
-						{
-							"key": "apicall",
-							"value": "tipoGas"
+			"name": "Visualizar Data",
+			"item": [
+				{
+					"name": "Obtener tipo gas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/curso_api/Api.php?apicall=tipoGas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"curso_api",
+								"Api.php"
+							],
+							"query": [
+								{
+									"key": "apicall",
+									"value": "tipoGas"
+								}
+							]
 						}
-					]
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener Unidad Medida",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/curso_api/Api.php?apicall=umedida",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"curso_api",
+								"Api.php"
+							],
+							"query": [
+								{
+									"key": "apicall",
+									"value": "umedida"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener categorias",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/curso_api/Api.php?apicall=verCategorias",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"curso_api",
+								"Api.php"
+							],
+							"query": [
+								{
+									"key": "apicall",
+									"value": "verCategorias"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener Productos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/curso_api/Api.php?apicall=verproductos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"curso_api",
+								"Api.php"
+							],
+							"query": [
+								{
+									"key": "apicall",
+									"value": "verproductos"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener proveedor",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/curso_api/Api.php?apicall=verProveedor",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"curso_api",
+								"Api.php"
+							],
+							"query": [
+								{
+									"key": "apicall",
+									"value": "verProveedor"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener Tipo de Operacion",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/curso_api/Api.php?apicall=tOpera",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"curso_api",
+								"Api.php"
+							],
+							"query": [
+								{
+									"key": "apicall",
+									"value": "tOpera"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Ver clientes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/curso_api/Api.php?apicall=verClientes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"curso_api",
+								"Api.php"
+							],
+							"query": [
+								{
+									"key": "apicall",
+									"value": "verClientes"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener tipo comprobante",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/curso_api/Api.php?apicall=tipoComprobante",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"curso_api",
+								"Api.php"
+							],
+							"query": [
+								{
+									"key": "apicall",
+									"value": "tipoComprobante"
+								}
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		},
 		{
-			"name": "Obtener Unidad Medida",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost/curso_api/Api.php?apicall=umedida",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"path": [
-						"curso_api",
-						"Api.php"
-					],
-					"query": [
-						{
-							"key": "apicall",
-							"value": "umedida"
+			"name": "Registrar",
+			"item": [
+				{
+					"name": "Nueva Categoria",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "categoria",
+									"value": "Argentina",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost/curso_api/Api.php?apicall=createcategoria",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"curso_api",
+								"Api.php"
+							],
+							"query": [
+								{
+									"key": "apicall",
+									"value": "createcategoria"
+								}
+							]
 						}
-					]
+					},
+					"response": []
+				},
+				{
+					"name": "Nuevo Producto",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id_categoria",
+									"value": "3",
+									"type": "default"
+								},
+								{
+									"key": "id_unidad",
+									"value": "3",
+									"type": "default"
+								},
+								{
+									"key": "idAlmacen",
+									"value": "1",
+									"type": "default"
+								},
+								{
+									"key": "codigo",
+									"value": "C001",
+									"type": "default"
+								},
+								{
+									"key": "nombre",
+									"value": "Hidrolavadora",
+									"type": "default"
+								},
+								{
+									"key": "descripcion",
+									"value": "Hidrolavadora a gas",
+									"type": "default"
+								},
+								{
+									"key": "stock",
+									"value": "25",
+									"type": "default"
+								},
+								{
+									"key": "precio_venta",
+									"value": "950",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost/curso_api/Api.php?apicall=grabaProducto",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"curso_api",
+								"Api.php"
+							],
+							"query": [
+								{
+									"key": "apicall",
+									"value": "grabaProducto"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Nuevo cliente",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "documento",
+									"value": "DNI",
+									"type": "default"
+								},
+								{
+									"key": "ruc",
+									"value": "46705057",
+									"type": "default"
+								},
+								{
+									"key": "razon_social",
+									"value": "Lagarto Juancho",
+									"type": "default"
+								},
+								{
+									"key": "direccion",
+									"value": "Las Cucardas",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost/curso_api/Api.php?apicall=grabaCliente",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"curso_api",
+								"Api.php"
+							],
+							"query": [
+								{
+									"key": "apicall",
+									"value": "grabaCliente"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Nuevo proveedor",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "ruc_proveedor",
+									"value": "20603425066",
+									"type": "default"
+								},
+								{
+									"key": "razon_social",
+									"value": "PIURASOFT SOLUTIONS-SOLUCIONES TECNOLOGICAS Y SERVICIOS GENERALES E.I.R.L.",
+									"type": "default"
+								},
+								{
+									"key": "direccion_fiscal",
+									"value": "AV. VICTOR ANDRES BELAUNDE 28 URB. PIURA I ETAPA",
+									"type": "default"
+								},
+								{
+									"key": "estado_empresa",
+									"value": "ACTIVO",
+									"type": "default"
+								},
+								{
+									"key": "condicion_empresa",
+									"value": "HABIDO",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost/curso_api/Api.php?apicall=grabaProveedor",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"curso_api",
+								"Api.php"
+							],
+							"query": [
+								{
+									"key": "apicall",
+									"value": "grabaProveedor"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Nueva Venta",
+					"request": {
+						"method": "POST",
+						"header": []
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		},
 		{
-			"name": "Obtener categorias",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost/curso_api/Api.php?apicall=verCategorias",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"path": [
-						"curso_api",
-						"Api.php"
-					],
-					"query": [
-						{
-							"key": "apicall",
-							"value": "verCategorias"
+			"name": "Actualizar",
+			"item": [
+				{
+					"name": "Actualiza categoria",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id_categoria",
+									"value": "2",
+									"type": "default"
+								},
+								{
+									"key": "categoria",
+									"value": "Valvula industrial",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost/curso_api/Api.php?apicall=updatecategoria",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"curso_api",
+								"Api.php"
+							],
+							"query": [
+								{
+									"key": "apicall",
+									"value": "updatecategoria"
+								}
+							]
 						}
-					]
+					},
+					"response": []
+				},
+				{
+					"name": "Actualiza producto",
+					"request": {
+						"method": "POST",
+						"header": []
+					},
+					"response": []
 				}
-			},
-			"response": []
-		},
-		{
-			"name": "Obtener Productos",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost/curso_api/Api.php?apicall=verproductos",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"path": [
-						"curso_api",
-						"Api.php"
-					],
-					"query": [
-						{
-							"key": "apicall",
-							"value": "verproductos"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Obtener proveedor",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost/curso_api/Api.php?apicall=verProveedor",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"path": [
-						"curso_api",
-						"Api.php"
-					],
-					"query": [
-						{
-							"key": "apicall",
-							"value": "verProveedor"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Obtener Tipo de Operacion",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost/curso_api/Api.php?apicall=tOpera",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"path": [
-						"curso_api",
-						"Api.php"
-					],
-					"query": [
-						{
-							"key": "apicall",
-							"value": "tOpera"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Obtener tipo comprobante",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost/curso_api/Api.php?apicall=tipoComprobante",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"path": [
-						"curso_api",
-						"Api.php"
-					],
-					"query": [
-						{
-							"key": "apicall",
-							"value": "tipoComprobante"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Ver clientes",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost/curso_api/Api.php?apicall=verClientes",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"path": [
-						"curso_api",
-						"Api.php"
-					],
-					"query": [
-						{
-							"key": "apicall",
-							"value": "verClientes"
-						}
-					]
-				}
-			},
-			"response": []
+			]
 		}
 	]
 }

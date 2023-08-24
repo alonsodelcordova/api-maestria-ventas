@@ -27,17 +27,15 @@ function isTheseParametersAvailable($params){
 	}
 }
 
-//una matriz para mostrar las respuestas de nuestro api
-$response = array();
+$response = array(); //una matriz para mostrar las respuestas de nuestro api
 
 //si se trata de una llamada api
-//que significa que un parametro get llamado se establece un la URL
-//y con estos parametros estamos concluyendo que es una llamada api
-
 if(isset($_GET['apicall'])){
 
 	//Aqui iran todos los llamados de nuestra api
 	switch ($_GET['apicall']) {
+
+         // USUARIOS
 		case 'readusuarios':
 		$db = new ControllerJson();
 		$response['error'] = false;
@@ -48,17 +46,14 @@ if(isset($_GET['apicall'])){
         //CATEGORIAS
 		case 'createcategoria':
 		//primero haremos la verificación de parametros.
-		isTheseParametersAvailable(array('titulo'));
-
+		isTheseParametersAvailable(array('categoria'));
 		$db = new ControllerJson();
-		$result = $db->createCategoriaController($_POST['titulo']);
+		$result = $db->createCategoriaController($_POST['categoria']);
 
 		if($result){
-			//esto significa que no hay ningun error
 			$response['error'] = false;
-			//mensaje que se ejecuto correctamente
 			$response['message'] = 'Categoria agregada correctamente';
-			$response['contenido'] = $db->readCategoriasController();
+			$response['contenido'] = $db->verCategoriasController();
 		}else{
 			$response['error'] = true;
 			$response['message'] = 'Error al crear categria';
@@ -72,28 +67,30 @@ if(isset($_GET['apicall'])){
 		$response['contenido'] = $db->verCategoriasController();
 		break;
 
-		case 'updatecategoria':
-			//primero haremos la verificación de parametros.
-		isTheseParametersAvailable(array('id','titulo'));
-
-		$db = new ControllerJson();
-		$result = $db->updateCategoriaController(
-			$_POST['id'],
-			$_POST['titulo']);
+		//PRODUCTOS
+        case 'grabaProducto':
+        isTheseParametersAvailable(array('id_categoria'));
+        $db = new ControllerJson();
+		$result = $db->crearProductoController(
+			$_POST['id_categoria'],
+			$_POST['id_unidad'],
+			$_POST['idAlmacen'],
+			$_POST['codigo'],
+			$_POST['nombre'],
+			$_POST['descripcion'],
+			$_POST['stock'],
+			$_POST['precio_venta']);
 
 		if($result){
-			//esto significa que no hay ningun error
 			$response['error'] = false;
-			//mensaje que se ejecuto correctamente
-			$response['message'] = 'Edicion de Categoria exitosa...';
-			$response['contenido'] = $db->readCategoriasController();
+			$response['message'] = 'Producto creado correctamente';
+			$response['contenido'] = $db->readProductosController();
 		}else{
 			$response['error'] = true;
-			$response['message'] = 'Ocurrio un error, intenta nuevamente';
+			$response['message'] = 'Error al crear categria';
 		}
-		break;
+        break;
 
-        //PRODUCTOS
 		case 'verproductos':
 		$db = new ControllerJson();
 		$response['error'] = false;
@@ -118,6 +115,27 @@ if(isset($_GET['apicall'])){
 		break;
 
 		// PROVEEDOR
+		case 'grabaProveedor':
+		isTheseParametersAvailable(array('ruc_proveedor'));
+        $db = new ControllerJson();
+		$result = $db->crearProveedorController(
+			$_POST['ruc_proveedor'],
+			$_POST['razon_social'],
+			$_POST['direccion_fiscal'],
+			$_POST['estado_empresa'],
+			$_POST['condicion_empresa']);
+
+		if($result){
+			$response['error'] = false;
+			$response['message'] = 'Proveedor Creado correctamente';
+			$response['contenido'] = $db->verProveedorController();
+		}else{
+			$response['error'] = true;
+			$response['message'] = 'Error al crear proveedor';
+		}
+        break;
+		break;
+
 		case 'verProveedor': 
 		$db = new ControllerJson();
 		$response['error'] = false;
@@ -133,7 +151,7 @@ if(isset($_GET['apicall'])){
 		$response['contenido'] = $db->verOperacionController();
 		break;
 
-		// TIPO DE COOMPROBANTE
+		// TIPO DE COMPROBANTE
 		case 'tipoComprobante': 
 		$db = new ControllerJson();
 		$response['error'] = false;
@@ -142,19 +160,31 @@ if(isset($_GET['apicall'])){
 		break;
 
 		// CLIENTES
+		case 'grabaCliente':
+        isTheseParametersAvailable(array('documento'));
+        $db = new ControllerJson();
+		$result = $db->crearClienteController(
+			$_POST['documento'],
+			$_POST['ruc'],
+			$_POST['razon_social'],
+			$_POST['direccion']);
+
+		if($result){
+			$response['error'] = false;
+			$response['message'] = 'Cliente Registrado con Exito..';
+			$response['contenido'] = $db->verClientesController();
+		}else{
+			$response['error'] = true;
+			$response['message'] = 'Error al grabar cliente';
+		}
+        break;
+
+
 		case 'verClientes': 
 		$db = new ControllerJson();
 		$response['error'] = false;
 		$response['message'] = 'Solicitud completada correctamente';
 		$response['contenido'] = $db->verClientesController();
-		break;
-
-		// CILINDROS
-		case 'verCilindros': 
-		$db = new ControllerJson();
-		$response['error'] = false;
-		$response['message'] = 'Solicitud completada correctamente';
-		$response['contenido'] = $db->verCilindrosController();
 		break;
 
 		// ALMACEN
@@ -165,15 +195,15 @@ if(isset($_GET['apicall'])){
 		$response['contenido'] = $db->verAlmacenController();
 		break;
 
-		// KARDEX
-		case 'verKardex': 
-		$db = new ControllerJson();
-		$response['error'] = false;
-		$response['message'] = 'Solicitud completada correctamente';
-		$response['contenido'] = $db->verKardexController();
-		break;
 
        // VENTAS
+		case 'grabaVenta':
+		break;
+
+		case 'verVenta':
+		break;
+
+
 
 
 

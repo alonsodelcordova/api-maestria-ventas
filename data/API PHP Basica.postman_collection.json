@@ -1,0 +1,209 @@
+{
+	"info": {
+		"_postman_id": "b3e25833-3dbf-4be7-a08e-a03ce98df1f4",
+		"name": "API PHP Basica",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Obtener tipo gas",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/curso_api/Api.php?apicall=tipoGas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"curso_api",
+						"Api.php"
+					],
+					"query": [
+						{
+							"key": "apicall",
+							"value": "tipoGas"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener Unidad Medida",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/curso_api/Api.php?apicall=umedida",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"curso_api",
+						"Api.php"
+					],
+					"query": [
+						{
+							"key": "apicall",
+							"value": "umedida"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener categorias",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/curso_api/Api.php?apicall=verCategorias",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"curso_api",
+						"Api.php"
+					],
+					"query": [
+						{
+							"key": "apicall",
+							"value": "verCategorias"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener Productos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/curso_api/Api.php?apicall=verproductos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"curso_api",
+						"Api.php"
+					],
+					"query": [
+						{
+							"key": "apicall",
+							"value": "verproductos"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener proveedor",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/curso_api/Api.php?apicall=verProveedor",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"curso_api",
+						"Api.php"
+					],
+					"query": [
+						{
+							"key": "apicall",
+							"value": "verProveedor"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener Tipo de Operacion",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/curso_api/Api.php?apicall=tOpera",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"curso_api",
+						"Api.php"
+					],
+					"query": [
+						{
+							"key": "apicall",
+							"value": "tOpera"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener tipo comprobante",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/curso_api/Api.php?apicall=tipoComprobante",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"curso_api",
+						"Api.php"
+					],
+					"query": [
+						{
+							"key": "apicall",
+							"value": "tipoComprobante"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Ver clientes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/curso_api/Api.php?apicall=verClientes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"curso_api",
+						"Api.php"
+					],
+					"query": [
+						{
+							"key": "apicall",
+							"value": "verClientes"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

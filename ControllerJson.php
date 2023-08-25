@@ -68,6 +68,11 @@ class ControllerJson
 		return $respuesta;
 	}
 
+	public static function deleteCategoria($id){
+		$respuesta = Datos::deleteCategoriaModel($id, "categorias");
+		return $respuesta;
+	}
+
 
 	//**********************************
 	//   INICIO DE PRODUCTOS

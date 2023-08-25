@@ -115,6 +115,19 @@ class Datos extends Conexion
 		}
 	}
 
+	public static function deleteCategoriaModel($id_categoria, $tabla){
+		$stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE id_categoria = :id_categoria");
+
+		$stmt->bindParam(":id_categoria", $id_categoria, PDO::PARAM_INT);
+
+		if($stmt->execute()){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+
 
 	#PRODUCTOS
 	//-----------------------

@@ -8,6 +8,41 @@ require_once "Conexion.php";
  */
 class Datos extends Conexion
 {
+
+	# Almacen
+	//---------------------------------------------------------------------------------
+	public static function createAlmacenModel($almacen, $tabla){
+		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (almacen) VALUES (:almacen)");
+
+		$stmt->bindParam(":almacen", $almacen, PDO::PARAM_STR);
+
+		if($stmt->execute()){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	//verAlmacenModel
+	public static function verAlmacenModel($tabla){
+		$stmt = Conexion::conectar()->prepare("SELECT id_almacen, almacen FROM $tabla");
+		$stmt->execute();
+
+		$stmt->bindColumn("id_almacen", $idAlmacen);
+		$stmt->bindColumn("almacen", $almacen);
+
+		$almacenes = array();
+
+		while ($fila = $stmt->fetch(PDO::FETCH_BOUND)){
+			$alm = array();
+			$alm["idAlmacen"] = utf8_encode($idAlmacen);
+			$alm["almacen"] = utf8_encode($almacen);
+
+			array_push($almacenes, $alm);
+		}
+
+		return $almacenes;
+	}
 	
 	#USUARIOS
 	//----------------------------------------------------------------------------------

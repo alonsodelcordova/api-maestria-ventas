@@ -79,22 +79,6 @@ if(isset($_GET['apicall'])){
 			$response['contenido'] = $db->verCategoriasController();
 			break;
 
-		case 'deleteCategoria': 
-			//primero haremos la verificación de parametros.
-			isTheseParametersAvailable(array('id'));
-			$db = new ControllerJson();
-			$result = $db->deleteCategoria($inputs['id']);
-
-			if($result){
-				$response['error'] = false;
-				$response['message'] = 'Categoria eliminada correctamente';
-				$response['contenido'] = $db->verCategoriasController();
-			}else{
-				$response['error'] = true;
-				$response['message'] = 'Error al eliminar categria';
-			}
-			break;
-
 		//PRODUCTOS
         case 'grabaProducto':
 			isTheseParametersAvailable(array('id_categoria'));
@@ -224,11 +208,38 @@ if(isset($_GET['apicall'])){
 
 
        // VENTAS
-		case 'grabaVenta':
-			break;
+		case 'verVentas':
+		$db = new ControllerJson();
+		$response['error'] = false;
+		$response['message'] = 'Solicitud completada correctamente';
+		$response['contenido'] = $db->verVentasController();
+		break;
 
-		case 'verVenta':
+		case 'grabarVenta':
+			isTheseParametersAvailable(array('id_comprobante'));
+			$db = new ControllerJson();
+			$result = $db->crearVentaController(
+				$inputs['id_comprobante'],
+				$inputs['serie'],
+				$inputs['codigo'],
+				$inputs['id_cliente'],
+			    $inputs['id_producto'],   
+			    $inputs['precio_venta'],      
+			    $inputs['cantidad'],  
+			    $inputs['subtotal'],
+			    $inputs['igv'],
+		        $inputs['total']);
+
+			if($result){
+				$response['error'] = false;
+				$response['message'] = 'Venta Registrada con Exito..';
+				$response['contenido'] = $db->verVentasController();
+			}else{
+				$response['error'] = true;
+				$response['message'] = 'Error al grabar venta';
+			}
 			break;
+		break;
 
 
 	}

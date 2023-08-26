@@ -375,21 +375,68 @@ class Datos extends Conexion
 	}
 
 
+   # VENTAS 
+public static function verVentasModel($tabla){
+		$stmt = Conexion::conectar()->prepare("SELECT id_detalleventa, id_comprobante,  serie ,codigo,id_cliente, id_producto, precio_venta, cantidad, subtotal, igv, total FROM $tabla");
+		$stmt->execute();
+
+		$stmt->bindColumn("id_detalleventa", $id_detalleventa);
+		$stmt->bindColumn("id_comprobante", $id_comprobante);
+		$stmt->bindColumn("serie", $serie);
+		$stmt->bindColumn("codigo", $codigo);
+		$stmt->bindColumn("id_cliente", $id_cliente);
+		$stmt->bindColumn("id_producto", $id_producto);
+		$stmt->bindColumn("precio_venta", $precio_venta);
+		$stmt->bindColumn("cantidad", $cantidad);
+		$stmt->bindColumn("subtotal", $subtotal);
+		$stmt->bindColumn("igv", $igv);
+		$stmt->bindColumn("total", $total);
+
+		$ventas = array();
+
+		while($fila = $stmt->fetch(PDO::FETCH_BOUND)){
+			$ven = array();
+			$ven['id_detalleventa'] = utf8_encode($id_detalleventa);
+			$ven['id_comprobante'] = utf8_encode($id_comprobante);
+			$ven['serie'] = utf8_encode($serie);
+			$ven['codigo'] = utf8_encode($codigo);
+			$ven['id_cliente'] = utf8_encode($id_cliente);
+			$ven['id_producto'] = utf8_encode($id_producto);
+			$ven['precio_venta'] = utf8_encode($precio_venta);
+			$ven['cantidad'] = utf8_encode($cantidad);
+			$ven['subtotal'] = utf8_encode($subtotal);
+			$ven['igv'] = utf8_encode($igv);
+			$ven['total'] = utf8_encode($total);
+
+			array_push($ventas, $ven);
+		}
+		return $ventas;
+	}
 
 
 
+	public static function crearVentaModel($datosModel, $tabla){
 
+      $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (id_comprobante, serie, codigo, id_cliente, id_producto, precio_venta , cantidad, subtotal, igv, total) VALUES (:id_comprobante, :serie, :codigo, :id_cliente, :id_producto,    :precio_venta, :cantidad , :subtotal, :igv, :total)");
+	
+		$stmt->bindParam(":id_comprobante", $datosModel["id_comprobante"], PDO::PARAM_STR);
+		$stmt->bindParam(":serie", $datosModel["serie"], PDO::PARAM_STR);
+		$stmt->bindParam(":codigo", $datosModel["codigo"], PDO::PARAM_STR);
+		$stmt->bindParam(":id_cliente", $datosModel["id_cliente"], PDO::PARAM_STR);
+		$stmt->bindParam(":id_producto", $datosModel["id_producto"], PDO::PARAM_STR);
+		$stmt->bindParam(":precio_venta", $datosModel["precio_venta"], PDO::PARAM_STR);
+		$stmt->bindParam(":cantidad", $datosModel["cantidad"], PDO::PARAM_STR);
+		$stmt->bindParam(":subtotal", $datosModel["subtotal"], PDO::PARAM_STR);
+		$stmt->bindParam(":igv", $datosModel["igv"], PDO::PARAM_STR);
+		$stmt->bindParam(":total", $datosModel["total"], PDO::PARAM_STR);
 
-
-
-
-
-
-
-
-
-
-
+		if($stmt->execute()){
+			return true;
+		}else{
+			return false;
+		}
+   
+   }
 
 }
 

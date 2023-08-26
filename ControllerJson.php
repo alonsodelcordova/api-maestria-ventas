@@ -139,7 +139,7 @@ class ControllerJson
 	}
    
  //**********************************
- //  INICIO DE CLIENTES  crearClienteController
+ //  INICIO DE CLIENTES  
 //********************************** 
     public static function crearClienteController($documento,$ruc,$razon_social,$direccion){
 
@@ -203,6 +203,36 @@ class ControllerJson
 	public static function verAlmacenController(){ 
         $tabla = "almacen";
 		$respuesta = Datos::verAlmacenModel($tabla);
+		return $respuesta;
+	}
+   
+   //**********************************
+ 	//  INICIO DE VENTAS
+	//**********************************
+   public static function verVentasController(){ 
+        $tabla = "detalle_ventas";
+		$respuesta = Datos::verVentasModel($tabla);
+		return $respuesta;
+	}
+
+	public static function crearVentaController($id_comprobante,$serie,$codigo,$id_cliente,$id_producto,$precio_venta,$cantidad,$subtotal,$igv,$total){ 
+        
+        $tabla = "detalle_ventas";
+		$datosController = 
+        
+        array(
+        	"id_comprobante"=> $id_comprobante,
+			"serie"=> $serie,
+			"codigo"=> $codigo,
+            "id_cliente"=> $id_cliente,
+            "id_producto"=> $id_producto,
+            "precio_venta"=> $precio_venta,
+            "cantidad"=> $cantidad,
+            "subtotal"=> $subtotal,
+            "igv"=> $igv,
+            "total"=> $total);
+
+		$respuesta = Datos::crearVentaModel($datosController, $tabla);
 		return $respuesta;
 	}
 

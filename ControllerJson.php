@@ -142,11 +142,8 @@ class ControllerJson
  //  INICIO DE CLIENTES  
 //********************************** 
     public static function crearClienteController($documento,$ruc,$razon_social,$direccion){
-
         $tabla = "clientes";
-        $datosController = 
-        
-        array(
+        $datosController = array(
         	"documento"=> $documento,
 			"ruc"=> $ruc,
 			"razon_social"=> $razon_social,
@@ -160,6 +157,12 @@ class ControllerJson
 	public static function verClientesController(){ 
         $tabla = "clientes";
 		$respuesta = Datos::verClientesModel($tabla);
+		return $respuesta;
+	}
+
+	public static function deleteCliente($id){
+		$tabla = "clientes";
+		$respuesta = Datos::deleteClienteModel($id, $tabla);
 		return $respuesta;
 	}
 

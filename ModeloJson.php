@@ -359,6 +359,18 @@ class Datos extends Conexion
 		return $clientes;
 	}
 
+	public static function deleteClienteModel($id_cliente, $tabla){
+		$stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE id_cliente = :id_cliente");
+
+		$stmt->bindParam(":id_cliente", $id_cliente, PDO::PARAM_INT);
+
+		if($stmt->execute()){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
    
    # PROVEEDORES
 

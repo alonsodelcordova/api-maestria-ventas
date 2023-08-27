@@ -215,6 +215,22 @@ if(isset($_GET['apicall'])){
 			$response['contenido'] = $db->verClientesController();
 			break;
 
+		case 'deleteCliente': 
+			//primero haremos la verificación de parametros.
+			isTheseParametersAvailable(array('id_cliente'));
+			$db = new ControllerJson();
+			$result = $db->deleteCliente($inputs['id_cliente']);
+
+			if($result){
+				$response['error'] = false;
+				$response['message'] = 'Cliente Eliminada correctamente';
+				$response['contenido'] = $db->verClientesController();
+			}else{
+				$response['error'] = true;
+				$response['message'] = 'Error al crear categria';
+			}
+			break;
+
 		// ALMACEN
 		case 'verAlmacen': 
 			$db = new ControllerJson();

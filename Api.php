@@ -79,6 +79,22 @@ if(isset($_GET['apicall'])){
 			$response['contenido'] = $db->verCategoriasController();
 			break;
 
+		case 'deleteCategoria': 
+			//primero haremos la verificación de parametros.
+			isTheseParametersAvailable(array('id_categoria'));
+			$db = new ControllerJson();
+			$result = $db->deleteCategoria($inputs['id_categoria']);
+
+			if($result){
+				$response['error'] = false;
+				$response['message'] = 'Categoria Eliminada correctamente';
+				$response['contenido'] = $db->verCategoriasController();
+			}else{
+				$response['error'] = true;
+				$response['message'] = 'Error al crear categria';
+			}
+			break;
+
 		//PRODUCTOS
         case 'grabaProducto':
 			isTheseParametersAvailable(array('id_categoria'));
@@ -119,6 +135,7 @@ if(isset($_GET['apicall'])){
 			break;
 
 		// TIP DE GAS
+
 		case 'tipoGas': 
 			$db = new ControllerJson();
 			$response['error'] = false;

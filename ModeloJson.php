@@ -424,7 +424,13 @@ class Datos extends Conexion
 
    # VENTAS 
 public static function verVentasModel($tabla){
-		$stmt = Conexion::conectar()->prepare("SELECT id_detalleventa, id_comprobante,  serie ,codigo,id_cliente, id_producto, precio_venta, cantidad, subtotal, igv, total FROM $tabla");
+		$stmt = Conexion::conectar()->prepare(
+			"SELECT dv.id_detalleventa, dv.id_comprobante,  dv.serie ,dv.codigo,dv.id_cliente, cl.razon_social as nombre_cliente, dv.id_producto, 
+			pr.nombre as nombre_producto, dv.precio_venta, dv.cantidad, dv.subtotal, dv.igv, dv.total 
+			FROM $tabla  dv
+			inner join clientes  cl on cl.id_cliente=dv.id_cliente
+			inner join productos pr on pr.id_producto=dv.id_producto"
+		);
 		$stmt->execute();
 
 		$stmt->bindColumn("id_detalleventa", $id_detalleventa);
@@ -432,7 +438,9 @@ public static function verVentasModel($tabla){
 		$stmt->bindColumn("serie", $serie);
 		$stmt->bindColumn("codigo", $codigo);
 		$stmt->bindColumn("id_cliente", $id_cliente);
+		$stmt->bindColumn("nombre_cliente", $nombre_cliente);
 		$stmt->bindColumn("id_producto", $id_producto);
+		$stmt->bindColumn("nombre_producto", $nombre_producto);
 		$stmt->bindColumn("precio_venta", $precio_venta);
 		$stmt->bindColumn("cantidad", $cantidad);
 		$stmt->bindColumn("subtotal", $subtotal);
@@ -448,7 +456,9 @@ public static function verVentasModel($tabla){
 			$ven['serie'] = utf8_encode($serie);
 			$ven['codigo'] = utf8_encode($codigo);
 			$ven['id_cliente'] = utf8_encode($id_cliente);
+			$ven['nombre_cliente'] = utf8_encode($nombre_cliente);
 			$ven['id_producto'] = utf8_encode($id_producto);
+			$ven['nombre_producto'] = utf8_encode($nombre_producto);
 			$ven['precio_venta'] = utf8_encode($precio_venta);
 			$ven['cantidad'] = utf8_encode($cantidad);
 			$ven['subtotal'] = utf8_encode($subtotal);

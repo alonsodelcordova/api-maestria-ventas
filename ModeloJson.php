@@ -473,8 +473,12 @@ public static function verVentasModel($tabla){
 
 
 	public static function crearVentaModel($datosModel, $tabla){
+		//$cadena = "CALL crearVentaProducto( :id_comprobante, :id_cliente,  :id_producto, :serie, :codigo, :precio_venta, :cantidad , :subtotal, :igv, :total )";
 
-      $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (id_comprobante, serie, codigo, id_cliente, id_producto, precio_venta , cantidad, subtotal, igv, total) VALUES (:id_comprobante, :serie, :codigo, :id_cliente, :id_producto,    :precio_venta, :cantidad , :subtotal, :igv, :total)");
+      	//$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (id_comprobante, serie, codigo, id_cliente, id_producto, precio_venta , cantidad, subtotal, igv, total) 
+		//	VALUES (:id_comprobante, :serie, :codigo, :id_cliente, :id_producto,    :precio_venta, :cantidad , :subtotal, :igv, :total)");
+
+		$stmt = Conexion::conectar()->prepare(" CALL crearVentaProducto( :id_comprobante, :id_cliente,  :id_producto, :serie, :codigo, :precio_venta, :cantidad , :subtotal, :igv, :total )");
 	
 		$stmt->bindParam(":id_comprobante", $datosModel["id_comprobante"], PDO::PARAM_STR);
 		$stmt->bindParam(":serie", $datosModel["serie"], PDO::PARAM_STR);
